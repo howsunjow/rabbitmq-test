@@ -24,7 +24,7 @@ def rabbit_mq_receiver(host, port, user, password, queue):
         channel.basic_consume(queue=queue, on_message_callback=message_handler, auto_ack=True)
         print(' [*] Waiting for messages. To exit press CTRL+C')
         channel.start_consuming()        
-    except pika.exceptions.UnroutableError:
+    except Exception e:
         print(f'Channel Error')
         print(f'Type "{type(e)}" exception received')
 
